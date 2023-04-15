@@ -2,8 +2,6 @@
 """Flask application that retrieves information"""
 from api.v1.views import app_views
 from flask import jsonify
-from models import storage
-import json
 
 
 @app_views.route("/status", strict_slashes=False)
@@ -21,6 +19,8 @@ def stats():
     from models.review import Review
     from models.state import State
     from models.user import User
+    from models import storage
+    import json
     dic = {
         "amenities": storage.count(Amenity),
         "cities": storage.count(City),
