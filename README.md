@@ -22,6 +22,7 @@ This repository contains version 3 of a project to build a clone of the AirBnB w
 * [File Descriptions](#file-descriptions)
 * [Usage](#usage)
 * [Examples of use](#examples-of-use)
+* [API](#api)
 * [Bugs](#bugs)
 * [Authors](#authors)
 * [License](#license)
@@ -158,15 +159,33 @@ EOF  all  create  destroy  help  quit  show  update
 (hbnb) quit
 ```
 
+## API
+
+Este proyecto tiene 6 entidades, all HTTP methods are supported:
+* /amenities
+* /cities
+* /places
+* /reviews
+* /states
+* /users
+
+**Note:** Resources have relations.
+
+The available nested routes are:
+
+* /states/`<state_id>`/cities
+* /places/`<place_id>`/reviews
+* /cities/`<city_id>`/places
+
 ## Bugs
 No known bugs at this time. 
 
 ## Authors
-Alexa Orrico - [Github](https://github.com/alexaorrico)
-Jennifer Huang - [Github](https://github.com/jhuang10123)
-Juan Esteban Duque - [Github](https://github.com/Juanesduque1)
-Felipe Villamizar - [Github](https://github.com/felipevcc)
-Andres Solarte - [Github](https://github.com/Andres98100)
+* Alexa Orrico - [Github](https://github.com/alexaorrico)
+* Jennifer Huang - [Github](https://github.com/jhuang10123)
+* Juan Esteban Duque - [Github](https://github.com/Juanesduque1)
+* Felipe Villamizar - [Github](https://github.com/felipevcc)
+* Andres Solarte - [Github](https://github.com/Andres98100)
 
 ## License
 Public Domain. No copy write protection. 
