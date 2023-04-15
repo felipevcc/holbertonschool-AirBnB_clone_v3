@@ -161,7 +161,7 @@ EOF  all  create  destroy  help  quit  show  update
 
 ## API
 
-Este proyecto tiene 6 entidades, all HTTP methods are supported:
+This project have 6 entities, all HTTP methods are supported:
 * /amenities
 * /cities
 * /places
