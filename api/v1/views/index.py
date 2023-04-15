@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Flask application that retrieves information """
+"""Flask application that retrieves information"""
 from api.v1.views import app_views
 from flask import jsonify
 from models import storage
@@ -8,13 +8,13 @@ import json
 
 @app_views.route("/status", strict_slashes=False)
 def status():
-    """ Returns the app status """
+    """Returns the app status"""
     return jsonify({"status": "OK"})
 
 
 @app_views.route("/stats", methods=["GET"], strict_slashes=False)
 def stats():
-    """ Retrieves the number of objects per each type """
+    """Retrieves the number of objects per each type"""
     from models.amenity import Amenity
     from models.city import City
     from models.place import Place

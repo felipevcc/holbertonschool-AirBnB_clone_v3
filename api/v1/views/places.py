@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Flask application for Place class/entity """
+"""Flask application for Place class/entity"""
 from api.v1.views import app_views
 from models import storage
 from models.city import City
@@ -23,7 +23,7 @@ def retrieves_all_places(city_id):
 
 @app_views.route("/places/<place_id>", methods=["GET"], strict_slashes=False)
 def get_place(place_id):
-    """ Returns an object by id """
+    """Returns an object by id"""
     place = storage.get(Place, place_id)
     if not place:
         abort(404)
@@ -33,7 +33,7 @@ def get_place(place_id):
 @app_views.route("/places/<place_id>", methods=["DELETE"],
                  strict_slashes=False)
 def delete_place(place_id):
-    """ Deletes an object by id """
+    """Deletes an object by id"""
     place = storage.get(Place, place_id)
     if not place:
         abort(404)
@@ -45,7 +45,7 @@ def delete_place(place_id):
 @app_views.route("/cities/<city_id>/places",
                  methods=["POST"], strict_slashes=False)
 def create_place(city_id):
-    """ Creates an object """
+    """Creates an object"""
     place_data = request.get_json()
     city = storage.get(City, city_id)
     user = place_data.get('user_id')
@@ -67,7 +67,7 @@ def create_place(city_id):
 
 @app_views.route("/places/<place_id>", methods=["PUT"], strict_slashes=False)
 def update_place(place_id):
-    """ Updates an object """
+    """Updates an object"""
     place_data = request.get_json()
     place = storage.get(Place, place_id)
     if not place:

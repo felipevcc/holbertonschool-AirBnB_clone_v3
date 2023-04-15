@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Flask application for Review class/entity """
+"""Flask application for Review class/entity"""
 from api.v1.views import app_views
 from models import storage
 from models.place import Place
@@ -23,7 +23,7 @@ def retrieves_all_reviews(place_id):
 
 @app_views.route("/reviews/<review_id>", methods=["GET"], strict_slashes=False)
 def get_reviews(review_id):
-    """ Returns an object by id """
+    """Returns an object by id"""
     review = storage.get(Review, review_id)
     if not review:
         abort(404)
@@ -33,7 +33,7 @@ def get_reviews(review_id):
 @app_views.route("/reviews/<review_id>", methods=["DELETE"],
                  strict_slashes=False)
 def delete_review(review_id):
-    """ Deletes an object by id """
+    """Deletes an object by id"""
     review = storage.get(Review, review_id)
     if not review:
         abort(404)
@@ -45,7 +45,7 @@ def delete_review(review_id):
 @app_views.route("/places/<place_id>/reviews",
                  methods=["POST"], strict_slashes=False)
 def create_review(place_id):
-    """ Creates an object """
+    """Creates an object"""
     review_data = request.get_json()
     place = storage.get(Place, place_id)
     user = review_data.get('user_id')
@@ -67,7 +67,7 @@ def create_review(place_id):
 
 @app_views.route("/reviews/<review_id>", methods=["PUT"], strict_slashes=False)
 def update_review(review_id):
-    """ Updates an object """
+    """Updates an object"""
     review_data = request.get_json()
     review = storage.get(Review, review_id)
     if not review:

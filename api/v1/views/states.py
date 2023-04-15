@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Flask application for State class/entity """
+"""Flask application for State class/entity"""
 from api.v1.views import app_views
 from models import storage
 from models.state import State
@@ -8,7 +8,7 @@ from flask import jsonify, abort, request
 
 @app_views.route("/states", methods=["GET"], strict_slashes=False)
 def retrieves_all_states():
-    """ Returns the list of all State objects """
+    """Returns the list of all State objects"""
     states = storage.all(State).values()
     states_list = []
     for state in states:
@@ -18,7 +18,7 @@ def retrieves_all_states():
 
 @app_views.route("/states/<state_id>", methods=["GET"], strict_slashes=False)
 def get_state(state_id):
-    """ Returns an object by id """
+    """Returns an object by id"""
     state = storage.get(State, state_id)
     if not state:
         abort(404)
@@ -28,7 +28,7 @@ def get_state(state_id):
 @app_views.route("/states/<state_id>", methods=["DELETE"],
                  strict_slashes=False)
 def delete_state(state_id):
-    """ Deletes an object by id """
+    """Deletes an object by id"""
     state = storage.get(State, state_id)
     if not state:
         abort(404)
@@ -39,7 +39,7 @@ def delete_state(state_id):
 
 @app_views.route("/states", methods=["POST"], strict_slashes=False)
 def create_state():
-    """ Creates an object """
+    """Creates an object"""
     state_data = request.get_json()
     if not state_data:
         abort(400, "Not a JSON")
@@ -52,7 +52,7 @@ def create_state():
 
 @app_views.route("/states/<state_id>", methods=["PUT"], strict_slashes=False)
 def update_state(state_id):
-    """ Updates an object """
+    """Updates an object"""
     state_data = request.get_json()
     state = storage.get(State, state_id)
     if not state:

@@ -7,10 +7,10 @@ from api.v1.views import app_views
 from os import getenv
 
 
-""" Start Flask """
+"""Start Flask"""
 app = Flask(__name__)
 
-""" Register the blueprint app_views """
+"""Register the blueprint app_views"""
 app.register_blueprint(app_views)
 
 """Create the CORS instance to allow IPs"""
@@ -25,7 +25,7 @@ def teardown(exception):
 
 @app.errorhandler(404)
 def errorhandler(error):
-    """ Returns a JSON-formated status code for errors """
+    """Returns a JSON-formated status code for errors"""
     return jsonify({"error": "Not found"}), 404
 
 
