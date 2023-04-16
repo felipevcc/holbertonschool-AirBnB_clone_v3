@@ -1,28 +1,33 @@
 #!/usr/bin/python3
-"""
-starts a Flask web application
-"""
-
+"""Script that starts a Flask web application"""
 from flask import Flask, render_template
-from models import *
 from models import storage
+from models.state import State
+
+
 app = Flask(__name__)
 
 
-@app.route('/states', strict_slashes=False)
-@app.route('/states/<state_id>', strict_slashes=False)
-def states(state_id=None):
-    """display the states and cities listed in alphabetical order"""
-    states = storage.all("State")
-    if state_id is not None:
-        state_id = 'State.' + state_id
-    return render_template('9-states.html', states=states, state_id=state_id)
-
-
 @app.teardown_appcontext
-def teardown_db(exception):
-    """closes the storage on teardown"""
+def teardown(exception):
+    """Closes session"""
     storage.close()
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port='5000')
+
+@app.route("/states/", defaults={"id": None}, strict_slashes=False)
+@app.route("/states/<id>", strict_slashes=False)
+def display_states(id):
+    """Displays states and cities"""
+    states = storage.all(State).values()
+    if id:
+        state_by_id = None
+        for state in states:
+            if state.id == id:
+                state_by_id = state
+        return render_template("9-states.html", state=state_by_id, id=id)
+    else:
+        return render_template("9-states.html", states=states, id=id)
+
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
